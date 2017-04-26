@@ -1,11 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+</head>
+
+<body>
+    <h1>
+        <%= title %>
+    </h1>
+    <p>Welcome to
+        <%= title %>
+    </p>
+</body>
+
 </html>
+
+
+<!--FORM EXAMPLE FROM DOM-->
+
+<!--<form action="whatever" method="whatever">
+    <input type="text" name="firstName" />
+    <input type="text" name="lastName" />
+    <input type="submit" value="submit" />
+ </form>-->
+
+<!--and then when you type something and submit it you get a query string: example.com/add?firstName=whatever&lastName=whatever // you can then pull those values out and put it into your database!-->
