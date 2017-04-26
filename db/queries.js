@@ -1,9 +1,11 @@
 let pgp = require('pg-promise')();
+require('dotenv').config();
 let connString = process.env.DATABASE_URL;
+
 let db = pgp(connString);
 
 function getMealss(req, res, next) {
-    db.any('select * from tasks') //.any() is one of PG-Promises methods
+    db.any('select * from meals') //.any() is one of PG-Promises methods
         .then(function(data) {
             console.log('DATA:', data);
             res.status(200)
@@ -82,8 +84,8 @@ function getMealss(req, res, next) {
 // };
 //CRUD
 module.exports = {
-    createTask: createTask //CREATE
-        // getMealss: getMealss, //READ
+    // createTask: createTask, //CREATE
+    getMealss: getMealss //READ
         // getOneTask: getOneTask, //READ
         // updateTask: updateTask, //UPDATE
         // deleteTask: deleteTask //DELETE
