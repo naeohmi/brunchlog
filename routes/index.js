@@ -9,6 +9,10 @@ router.get('/', function(req, res, next) {
     });
 });
 
-router.get('/meals', db.getMealss);
+router.get('/createMeal', db.createMeal); //CREATE
+router.get('/getAllMeals', db.getAllMeals); //READ ALL
+router.get('/getOneMeal', db.getOneMeal); //READ ONE
+router.get('/updateMeal', db.updateMeal); //UPDATE
+router.get('/deleteMeal', db.deleteMeal); //DELETE
 
 module.exports = router;
