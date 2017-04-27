@@ -9,11 +9,11 @@ router.get('/', (req, res, next) => {
     });
 });
 
-router.get('/createMeal', db.createMeal); //CREATE
-router.get('/getAllMeals', db.getAllMeals); //READ ALL
-router.get('/getOneMeal', db.getOneMeal); //READ ONE
-router.get('/updateMeal', db.updateMeal); //UPDATE
-router.get('/deleteMeal', db.deleteMeal); //DELETE
+router.post('/m/meals', db.createMeal); //CREATE
+router.get('/m/meals', db.getAllMeals); //READ ALL
+router.get('/m/meal', db.getOneMeal); //READ ONE
+router.put('/m/update', db.updateMeal); //UPDATE
+router.delete('/m/delete', db.deleteMeal); //DELETE
 
 module.exports = router;
 

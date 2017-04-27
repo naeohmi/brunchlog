@@ -5,16 +5,15 @@ let connString = process.env.DATABASE_URL;
 let db = pgp(connString);
 
 let createMeal = (req, res, next) => {
-    req.body.age = parseInt(req.body.age);
-    // console.log('req.body ===>', req.body)
+    // req.body.age = parseInt(req.body.age);
     db.none('insert into meals(item, note, rating, spicy, cost)' +
-            'values(${item}, ${minutes})',
+            'values(${item}, ${note}, ${rating}, ${spicy}, ${cost})',
             req.body)
         .then(() => {
             res.status(200)
                 .json({
                     status: 'success',
-                    message: 'One Meal Inserted'
+                    message: 'One Meal Added'
                 });
         })
         .catch((err) => {
@@ -25,12 +24,12 @@ let createMeal = (req, res, next) => {
 let getAllMeals = (req, res, next) => {
     db.any('select * from meals') //.any() is one of PG-Promises methods
         .then((data) => {
-            console.log('DATA:', data);
+            // console.log('DATA:', data);
             res.status(200)
                 .json({
                     status: 'success',
                     data: data,
-                    message: 'Yay Mealsssss '
+                    message: 'Yay All the Meals '
                 })
         })
         .catch((err) => {
@@ -38,15 +37,15 @@ let getAllMeals = (req, res, next) => {
         });
 };
 
-function getOneMeal(req, res, next) {
+let getOneMeal = (req, res, next) => {
     let taskID = parseInt(req.params.id);
-    db.one('select * from tasks where id = $1', taskID) //.one() selects one from tasks
+    db.one('select * from meals where id = $1', taskID) //.one() selects one from tasks
         .then((data) => {
             res.status(200)
                 .json({
                     status: 'success',
                     data: data,
-                    message: 'One Task Was Retrieved'
+                    message: 'One Meal Was Grabbed'
                 });
         })
         .catch((err) => {
@@ -54,8 +53,8 @@ function getOneMeal(req, res, next) {
         });
 };
 
-let updateMeal = (req, res, next) => {
-    db.none('update tasks set item=$1, minutes=$2 where id=$3', [req.body.item, parseInt(req.body.minutes), parseInt(req.params.id)])
+let updateMeal = (req, res, next) => { //item, note, rating, spicy, cost
+    db.none('update meals set item=$1, note=$2, rating=$1, spicy=$1, cost=$1 where id=$3', [req.body.item, parseInt(req.body.note), parseInt(req.body.rating), parseInt(req.body.spicy), parseInt(req.body.cost), parseInt(req.params.id)])
         .then(() => {
             res.status(200)
                 .json({
@@ -69,13 +68,13 @@ let updateMeal = (req, res, next) => {
 };
 
 let deleteMeal = (req, res, next) => {
-    let taskID = parseInt(req.params.id);
-    db.result('delete from tasks where id = $1', taskID)
+    let mealId = parseInt(req.params.id);
+    db.result('delete from meals where id = $1', mealId)
         .then((result) => {
             res.status(200)
                 .json({
                     status: 'success',
-                    message: `Removed ${result.rowCount} task`
+                    message: `Removed ${result.rowCount} meal`
                 });
         })
         .catch((err) => {
