@@ -12,7 +12,7 @@ let createMeal = (req, res, next) => {
         .then(() => {
             res.status(200)
                 .json({
-                    status: 'success',
+                    status: 'whoo-hoo',
                     message: 'One Meal Added'
                 });
         })
@@ -27,7 +27,7 @@ let getAllMeals = (req, res, next) => {
             // console.log('DATA:', data);
             res.status(200)
                 .json({
-                    status: 'success',
+                    status: 'whoo-hoo',
                     data: data,
                     message: 'Yay All the Meals '
                 })
@@ -38,12 +38,12 @@ let getAllMeals = (req, res, next) => {
 };
 
 let getOneMeal = (req, res, next) => {
-    let taskID = parseInt(req.params.id);
-    db.one('select * from meals where id = $1', taskID) //.one() selects one from tasks
+    let mealId = parseInt(req.params.id);
+    db.one('select * from meals where id = $1', mealId) //.one() selects one from tasks
         .then((data) => {
             res.status(200)
                 .json({
-                    status: 'success',
+                    status: 'whoo-hoo',
                     data: data,
                     message: 'One Meal Was Grabbed'
                 });
@@ -58,7 +58,7 @@ let updateMeal = (req, res, next) => { //item, note, rating, spicy, cost
         .then(() => {
             res.status(200)
                 .json({
-                    status: 'success',
+                    status: 'whoo-hoo',
                     message: 'Task Updated'
                 });
         })
@@ -73,7 +73,7 @@ let deleteMeal = (req, res, next) => {
         .then((result) => {
             res.status(200)
                 .json({
-                    status: 'success',
+                    status: 'whoo-hoo',
                     message: `Removed ${result.rowCount} meal`
                 });
         })
