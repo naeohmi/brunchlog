@@ -5,7 +5,7 @@ const db = require('../db/queries');
 /* GET home page. */
 router.get('/', (req, res, next) => {
     res.render('index', {
-        title: 'Express'
+        title: 'BRUNCH!'
     });
 });
 
@@ -16,7 +16,3 @@ router.put('/update', db.updateMeal); //UPDATE
 router.delete('/delete', db.deleteMeal); //DELETE
 
 module.exports = router;
-
-//change the action and the method
-//the method will be get / post
-//form will have action and method
